@@ -66,6 +66,35 @@
     Object.keys(map).forEach(function (id) { var s = document.getElementById(id); if (s) io.observe(s); });
   }
 
+  // Experience filters.
+  var fbtns = [].slice.call(document.querySelectorAll('.filters .f'));
+  fbtns.forEach(function (b) {
+    b.addEventListener('click', function () {
+      var f = b.getAttribute('data-f');
+      fbtns.forEach(function (x) { var on = x === b; x.classList.toggle('on', on); x.setAttribute('aria-pressed', on ? 'true' : 'false'); });
+      [].slice.call(document.querySelectorAll('#experience .job')).forEach(function (job) {
+        var groups = [].slice.call(job.querySelectorAll('.grp'));
+        if (!groups.length) { job.classList.toggle('is-empty', f !== 'all'); return; }
+        var shown = 0;
+        groups.forEach(function (g) { var on = f === 'all' || g.getAttribute('data-g') === f; g.hidden = !on; if (on) shown++; });
+        job.classList.toggle('is-empty', shown === 0);
+        job.classList.toggle('single', f !== 'all');
+      });
+    });
+  });
+
+  // Launch filters.
+  var lbtns = [].slice.call(document.querySelectorAll('.lfilters .lf'));
+  lbtns.forEach(function (b) {
+    b.addEventListener('click', function () {
+      var k = b.getAttribute('data-k');
+      lbtns.forEach(function (x) { var on = x === b; x.classList.toggle('on', on); x.setAttribute('aria-pressed', on ? 'true' : 'false'); });
+      [].slice.call(document.querySelectorAll('.launches li')).forEach(function (li) {
+        li.hidden = !(k === 'all' || li.getAttribute('data-k') === k);
+      });
+    });
+  });
+
   // Copy email.
   var copy = document.getElementById('copy');
   if (copy) copy.addEventListener('click', function () {
