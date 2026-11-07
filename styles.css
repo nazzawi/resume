@@ -178,9 +178,13 @@ details.row[open]>summary::after{transform:rotate(-135deg)}
 .grp a{font-size:.8rem;font-weight:600;text-decoration:none;background:var(--accent-tint);padding:1px 8px;border-radius:999px;margin-left:4px;white-space:nowrap}
 .job.is-empty{display:none}
 .job.single .groups{grid-template-columns:1fr}
-.edu-list{list-style:none;margin:0;padding:0;display:grid;gap:10px;font-size:.93rem}
-.edu-list li{display:flex;justify-content:space-between;gap:4px 16px;flex-wrap:wrap}
-.edu-list span{color:var(--muted);font-size:.85rem;font-variant-numeric:tabular-nums}
+.edu-list{list-style:none;margin:0;padding:0;display:grid;font-size:.93rem}
+.edu-list li{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:4px 24px;align-items:baseline;padding:12px 0;border-top:1px solid var(--line)}
+.edu-list li:first-child{border-top:0;padding-top:0}
+.ed{display:grid;gap:2px;min-width:0}
+.ed b{font-weight:600}
+.inst{color:var(--muted);font-size:.88rem}
+.dt{color:var(--muted);font-size:.85rem;font-variant-numeric:tabular-nums;text-align:right;white-space:nowrap}
 
 /* timeline */
 .tl{padding:24px 24px 26px;display:grid;gap:22px}
